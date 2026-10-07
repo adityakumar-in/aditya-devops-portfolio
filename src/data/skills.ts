@@ -1,78 +1,84 @@
 export interface SkillItem {
   name: string;
-  level?: string;
   tag?: string;
+  description?: string;
 }
 
 export interface SkillCategory {
   id: string;
   title: string;
+  badge: string;
   description: string;
-  iconName: string;
+  iconName: "Cloud" | "Terminal" | "GitBranch" | "Cpu" | "Server" | "Database" | "Layers";
   skills: SkillItem[];
 }
 
 export const skillCategories: SkillCategory[] = [
   {
-    id: "devops-iac",
-    title: "DevOps & Automation",
-    description: "CI/CD pipelines, container orchestration, and infrastructure provisioning.",
-    iconName: "Terminal",
-    skills: [
-      { name: "Docker", tag: "Containers" },
-      { name: "Docker Compose", tag: "Orchestration" },
-      { name: "Jenkins", tag: "CI/CD Automation" },
-      { name: "GitHub Actions", tag: "Workflow Automation" },
-      { name: "Terraform", tag: "IaC Provisioning" },
-      { name: "Ansible", tag: "Configuration" },
-    ],
-  },
-  {
     id: "cloud",
     title: "Cloud Infrastructure",
-    description: "Architecting scalable and secure cloud environments on AWS.",
+    badge: "AWS",
+    description: "Cloud compute, identity access management, scalable storage, and virtual networking.",
     iconName: "Cloud",
     skills: [
-      { name: "AWS", tag: "Core Cloud" },
+      { name: "AWS", tag: "Primary Cloud" },
       { name: "Amazon EC2", tag: "Compute Instances" },
-      { name: "AWS IAM", tag: "Security & Policies" },
+      { name: "AWS IAM", tag: "Identity & Security Policies" },
       { name: "Amazon S3", tag: "Object Storage" },
       { name: "Amazon VPC", tag: "Networking & Subnets" },
     ],
   },
   {
-    id: "systems-networking",
-    title: "Systems & Web Servers",
-    description: "Operating systems, reverse proxies, and database foundations.",
+    id: "devops",
+    title: "DevOps & Automation",
+    badge: "CI/CD & Containers",
+    description: "Continuous integration, containerized deployments, and infrastructure as code orchestration.",
+    iconName: "Terminal",
+    skills: [
+      { name: "Docker", tag: "Containerization" },
+      { name: "Docker Compose", tag: "Multi-Container" },
+      { name: "Jenkins", tag: "CI/CD Pipelines" },
+      { name: "GitHub Actions", tag: "Workflow Automation" },
+      { name: "Terraform", tag: "Infrastructure as Code" },
+      { name: "Ansible", tag: "Config Management" },
+    ],
+  },
+  {
+    id: "vcs-scripting",
+    title: "Version Control & Scripting",
+    badge: "Git & Shell",
+    description: "Distributed code collaboration, commit history governance, and automated shell workflows.",
+    iconName: "GitBranch",
+    skills: [
+      { name: "Git", tag: "Distributed VCS" },
+      { name: "GitHub", tag: "Code Hosting & Webhooks" },
+      { name: "Bash", tag: "Shell Automation Scripting" },
+    ],
+  },
+  {
+    id: "systems-web",
+    title: "Operating Systems & Web Servers",
+    badge: "Linux & Nginx",
+    description: "Production Linux environment administration, reverse proxies, and database foundations.",
     iconName: "Cpu",
     skills: [
-      { name: "Linux / Ubuntu", tag: "SysAdmin & Shell" },
-      { name: "Windows Server", tag: "OS Management" },
+      { name: "Linux (Ubuntu)", tag: "Server Administration" },
+      { name: "Windows", tag: "Operating System" },
       { name: "Nginx", tag: "Reverse Proxy & Web Server" },
       { name: "MySQL", tag: "Relational Database" },
     ],
   },
   {
-    id: "vcs-scripting",
-    title: "Scripting & Version Control",
-    description: "Reliable automation scripts and collaborative Git workflows.",
-    iconName: "GitBranch",
-    skills: [
-      { name: "Bash Scripting", tag: "Automation & Cron" },
-      { name: "Git", tag: "Distributed VCS" },
-      { name: "GitHub", tag: "Collaboration & Webhooks" },
-    ],
-  },
-  {
-    id: "core-concepts",
-    title: "Core Engineering Principles",
-    description: "Foundational methodologies guiding reliable software delivery.",
+    id: "concepts",
+    title: "Core Methodologies",
+    badge: "Engineering Principles",
+    description: "Foundational software delivery and system reliability principles.",
     iconName: "Layers",
     skills: [
-      { name: "CI/CD Pipeline Design", tag: "Automation" },
+      { name: "CI/CD Automation", tag: "Continuous Delivery" },
       { name: "Infrastructure as Code (IaC)", tag: "Declarative Infra" },
-      { name: "Containerization", tag: "Reproducible Builds" },
-      { name: "Cloud Architecture", tag: "Scalability" },
+      { name: "Containerization", tag: "Environment Parity" },
+      { name: "Cloud Infrastructure", tag: "Scalability & Resilience" },
     ],
   },
 ];

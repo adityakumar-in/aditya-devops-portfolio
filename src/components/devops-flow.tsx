@@ -31,57 +31,57 @@ const pipelineSteps: PipelineStep[] = [
   {
     id: "code",
     stepNumber: "01",
-    label: "Source Code",
-    sublabel: "Git Version Control",
-    tool: "Git / Local",
+    label: "Code & Version Control",
+    sublabel: "Local Development",
+    tool: "Git",
     icon: Code2,
-    command: "git commit -m 'feat: infrastructure automation' && git push",
+    command: "git commit -m 'feat: automate application deployment' && git push",
     details: [
-      "Modular full-stack codebase",
-      "Feature branching and commit hygiene",
-      "Pre-commit linting and hygiene checks",
+      "Modular full-stack codebase following Git best practices",
+      "Branch-level isolation and disciplined commit documentation",
+      "Local container verification before remote push",
     ],
   },
   {
     id: "github",
     stepNumber: "02",
-    label: "Version Control",
-    sublabel: "Collaboration & Triggers",
+    label: "Repository & Webhook",
+    sublabel: "Event Dispatch",
     tool: "GitHub",
     icon: GitPullRequest,
-    command: "POST /webhook payload -> Jenkins pipeline triggered",
+    command: "POST /webhook payload -> Jenkins CI server triggered",
     details: [
-      "Protected branch policies",
-      "Pull request reviews & status checks",
-      "Automated webhook dispatch to CI runner",
+      "GitHub repository hosting with branch protection rules",
+      "Automated payload delivery to Jenkins CI runner upon commit",
+      "Pull request reviews and change tracking",
     ],
   },
   {
     id: "cicd",
     stepNumber: "03",
-    label: "CI/CD Pipeline",
+    label: "Continuous Integration",
     sublabel: "Automated Build & Test",
     tool: "Jenkins / Actions",
     icon: Workflow,
-    command: "jenkins-runner: executing pipeline stages [100% PASS]",
+    command: "jenkins-agent: executing automated pipeline stages",
     details: [
-      "Automated unit testing & lint validation",
-      "Artifact bundling & dependency audit",
-      "Automated pipeline status notification",
+      "Automated build and test pipeline orchestration",
+      "Drastic reduction in manual overhead (~60% effort saved)",
+      "Automated health and build failure notifications",
     ],
   },
   {
     id: "docker",
     stepNumber: "04",
-    label: "Containerization",
-    sublabel: "Reproducible Packaging",
+    label: "Container Packaging",
+    sublabel: "Image Orchestration",
     tool: "Docker / Compose",
     icon: Box,
-    command: "docker compose build --no-cache && docker tag ...",
+    command: "docker compose build && docker compose up -d",
     details: [
-      "Multi-stage optimized Dockerfiles",
-      "Isolated container networking",
-      "Docker Compose multi-service definitions",
+      "Containerizing frontend (React), backend (Node.js), and database (MySQL)",
+      "Consistent environments across local machine and AWS cloud",
+      "Isolated container bridge network for secure inter-service communication",
     ],
   },
   {
@@ -91,71 +91,69 @@ const pipelineSteps: PipelineStep[] = [
     sublabel: "Declarative Cloud",
     tool: "Terraform",
     icon: Binary,
-    command: "terraform apply -input=false -auto-approve",
+    command: "terraform apply -auto-approve",
     details: [
-      "Declarative state management",
-      "Idempotent infrastructure provisioning",
-      "Immutable resource definitions",
+      "Declarative provisioning of AWS cloud infrastructure",
+      "Reproducible, version-controlled infrastructure state",
+      "Automated configuration of security groups and compute resources",
     ],
   },
   {
     id: "aws",
     stepNumber: "06",
-    label: "Cloud Architecture",
-    sublabel: "Compute & Networking",
-    tool: "AWS (EC2, VPC, IAM)",
+    label: "Cloud Compute & VPC",
+    sublabel: "Production Hosting",
+    tool: "AWS (EC2, VPC)",
     icon: Cloud,
-    command: "aws ec2 describe-instances --state-name running",
+    command: "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running'",
     details: [
-      "Isolated VPC subnets & security groups",
-      "Least-privilege IAM policies",
-      "EC2 compute hosting with S3 storage",
+      "Hosting containerized stack on reliable AWS EC2 instances",
+      "Configured VPC subnets, route tables, and security groups",
+      "IAM least-privilege role policies and secure key management",
     ],
   },
   {
     id: "deploy",
     stepNumber: "07",
-    label: "Production Delivery",
-    sublabel: "Zero-Downtime Traffic",
-    tool: "Nginx / Systemd",
+    label: "Traffic Routing & Nginx",
+    sublabel: "Reverse Proxy",
+    tool: "Nginx / Linux",
     icon: Rocket,
-    command: "nginx -t && systemctl reload nginx [STATUS: 200 OK]",
+    command: "nginx -t && systemctl reload nginx [200 OK]",
     details: [
-      "Reverse proxy routing & SSL termination",
-      "Zero-downtime rolling reload",
-      "Automated health checks & log telemetry",
+      "Nginx configured as reverse proxy routing requests across containers",
+      "SSL termination and optimized static asset delivery",
+      "Zero-downtime rolling service reload and health verification",
     ],
   },
 ];
 
 export function DevOpsFlow() {
   const [activeStepId, setActiveStepId] = useState<string>("cicd");
-  const activeStep = pipelineSteps.find((s) => s.id === activeStepId) || pipelineSteps[2];
+  const activeStep =
+    pipelineSteps.find((s) => s.id === activeStepId) || pipelineSteps[2];
 
   return (
-    <section id="pipeline" className="py-20 md:py-28 relative border-t border-white/[0.06] overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-emerald-500/5 blur-[140px] rounded-full pointer-events-none" />
-
+    <section id="pipeline" className="py-12 md:py-16 relative bg-[var(--bg-canvas)] border-t border-[var(--border-warm)] transition-colors overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <MotionReveal>
-          <div className="flex flex-col items-start mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-emerald-400 mb-3">
-              <span>// 04. PIPELINE ARCHITECTURE</span>
+          <div className="flex flex-col items-start mb-8 sm:mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#101624] border border-[#EAE6DF] dark:border-[#1E283D] text-xs font-bold uppercase tracking-widest text-[#0B9FA5] dark:text-[#14B8A6] mb-3 shadow-xs">
+              <span>// 04. Pipeline Architecture</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
-              How I Build & Deliver Infrastructure
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#02365D] dark:text-[#38BDF8]">
+              End-to-End DevOps Delivery Flow
             </h2>
-            <p className="mt-3 text-zinc-400 text-sm sm:text-base max-w-2xl leading-relaxed">
-              From local commit to production deployment: an automated, reproducible lifecycle designed to eliminate human error and maintain 99.9% reliability.
+            <p className="mt-3 text-[#5C6470] dark:text-[#94A3B8] text-sm sm:text-base max-w-2xl leading-relaxed">
+              From local commit to production traffic: an automated, repeatable lifecycle designed to eliminate manual toil and guarantee high reliability.
             </p>
           </div>
         </MotionReveal>
 
-        {/* Interactive Steps Bar / Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 mb-8">
+        {/* Interactive Steps Bar */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-8">
           {pipelineSteps.map((step) => {
             const Icon = step.icon;
             const isActive = step.id === activeStepId;
@@ -163,69 +161,85 @@ export function DevOpsFlow() {
               <button
                 key={step.id}
                 onClick={() => setActiveStepId(step.id)}
-                className={`p-3.5 rounded-xl border text-left transition-all duration-200 flex flex-col justify-between min-h-[92px] group relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
+                className={`p-3.5 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between min-h-[96px] group relative cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02365D] dark:focus-visible:ring-[#38BDF8] ${
                   isActive
-                    ? "bg-emerald-500/10 border-emerald-500/40 text-white shadow-lg shadow-emerald-500/10"
-                    : "bg-[#0b101b] border-white/[0.08] text-zinc-400 hover:text-zinc-200 hover:border-white/[0.15]"
+                    ? "bg-[#02365D] border-[#02365D] dark:bg-[#0369A1] dark:border-[#38BDF8] text-white shadow-md -translate-y-1"
+                    : "bg-white dark:bg-[#101624] border-[#EAE6DF] dark:border-[#1E283D] text-[#5C6470] dark:text-[#94A3B8] hover:text-[#1C1E21] dark:hover:text-[#F8FAFC] hover:border-[#D8D2C7] dark:hover:border-[#334155] shadow-xs"
                 }`}
               >
                 <div className="flex items-center justify-between w-full mb-2">
-                  <span className={`text-[10px] font-mono ${isActive ? "text-emerald-400 font-bold" : "text-zinc-400"}`}>
+                  <span
+                    className={`text-[10px] font-mono font-bold ${
+                      isActive ? "text-[#38BDF8]" : "text-[#8C94A0] dark:text-[#64748B]"
+                    }`}
+                  >
                     {step.stepNumber}
                   </span>
-                  <Icon className={`w-4 h-4 ${isActive ? "text-emerald-400" : "text-zinc-400 group-hover:text-zinc-300"}`} />
+                  <Icon
+                    className={`w-4 h-4 ${
+                      isActive ? "text-[#38BDF8]" : "text-[#02365D] dark:text-[#38BDF8]"
+                    }`}
+                  />
                 </div>
                 <div>
-                  <div className={`text-xs font-semibold leading-tight ${isActive ? "text-white" : "text-zinc-300"}`}>
+                  <div
+                    className={`text-xs font-bold leading-tight ${
+                      isActive ? "text-white" : "text-[#1C1E21] dark:text-[#F8FAFC]"
+                    }`}
+                  >
                     {step.label}
                   </div>
-                  <div className="text-[10px] font-mono text-zinc-400 truncate mt-0.5">
+                  <div
+                    className={`text-[10px] font-mono truncate mt-0.5 ${
+                      isActive ? "text-slate-300" : "text-[#5C6470] dark:text-[#94A3B8]"
+                    }`}
+                  >
                     {step.tool}
                   </div>
                 </div>
 
-                {/* Active arrow indicator on bottom */}
+                {/* Arrow Pointer on Active */}
                 {isActive && (
-                  <div className="hidden lg:block absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-emerald-500/60" />
+                  <div className="hidden lg:block absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-[#02365D] dark:border-t-[#0369A1]" />
                 )}
               </button>
             );
           })}
         </div>
 
-        {/* Selected Stage Detail Console Box */}
+        {/* Active Stage Detailed Card */}
         <MotionReveal delay={0.15}>
-          <div className="rounded-2xl bg-[#0b101b] border border-white/[0.1] shadow-2xl p-6 sm:p-8 backdrop-blur-xl">
+          <div className="card-premium p-6 sm:p-8 shadow-md">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
-              {/* Left detail info */}
+              {/* Left Detail Info */}
               <div className="lg:col-span-7 space-y-4">
                 <div className="flex items-center gap-2.5">
-                  <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">
+                  <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-[#02365D]/10 dark:bg-[#38BDF8]/10 text-[#02365D] dark:text-[#38BDF8] border border-[#02365D]/20 dark:border-[#38BDF8]/20">
                     Stage {activeStep.stepNumber}
                   </span>
-                  <span className="text-xs font-mono text-zinc-400">
+                  <span className="text-xs font-mono text-[#5C6470] dark:text-[#94A3B8]">
                     {activeStep.sublabel}
                   </span>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#1C1E21] dark:text-[#F8FAFC] tracking-tight flex items-center gap-2">
                   {activeStep.label}
-                  <span className="text-sm font-normal text-zinc-400">({activeStep.tool})</span>
+                  <span className="text-sm font-normal text-[#5C6470] dark:text-[#94A3B8]">({activeStep.tool})</span>
                 </h3>
 
-                {/* Terminal command snippet */}
-                <div className="p-3 rounded-xl bg-[#07090e] border border-white/[0.08] font-mono text-xs text-zinc-300 flex items-center gap-2 overflow-x-auto">
-                  <Terminal className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span className="text-emerald-400">$</span>
-                  <span className="text-zinc-200 select-all">{activeStep.command}</span>
+                {/* Terminal Shell Snippet */}
+                <div className="p-3.5 rounded-xl bg-[#121721] border border-[#232B3D] font-mono text-xs text-[#E2E8F0] flex items-center gap-2 overflow-x-auto">
+                  <Terminal className="w-4 h-4 text-[#0B9FA5] dark:text-[#14B8A6] shrink-0" />
+                  <span className="text-[#38BDF8]">$</span>
+                  <span className="select-all">{activeStep.command}</span>
                 </div>
 
-                {/* Bullet highlights */}
-                <ul className="space-y-2 pt-2">
+                {/* Bullets */}
+                <ul className="space-y-2 pt-1">
                   {activeStep.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#1C1E21] dark:text-[#F8FAFC]">
+                      <CheckCircle2 className="w-4 h-4 text-[#087D82] dark:text-[#14B8A6] shrink-0 mt-0.5" />
                       <span>{detail}</span>
                     </li>
                   ))}
@@ -234,39 +248,41 @@ export function DevOpsFlow() {
 
               {/* Right Pipeline Telemetry Card */}
               <div className="lg:col-span-5">
-                <div className="p-5 rounded-xl bg-[#07090e] border border-white/[0.08] space-y-3 font-mono text-xs">
-                  <div className="flex items-center justify-between pb-3 border-b border-white/[0.06] text-zinc-400">
-                    <span className="flex items-center gap-1.5 text-zinc-300">
-                      <Activity className="w-4 h-4 text-emerald-400" />
+                <div className="p-5 rounded-2xl bg-[#FAF8F5] dark:bg-[#121929] border border-[#EAE6DF] dark:border-[#1E283D] space-y-3 font-mono text-xs">
+                  <div className="flex items-center justify-between pb-3 border-b border-[#EAE6DF] dark:border-[#1E283D]">
+                    <span className="flex items-center gap-2 font-bold text-[#02365D] dark:text-[#38BDF8]">
+                      <Activity className="w-4 h-4 text-[#0B9FA5] dark:text-[#14B8A6]" />
                       PIPELINE TELEMETRY
                     </span>
-                    <span className="text-emerald-400 font-semibold">STATUS: OK</span>
+                    <span className="text-[#087D82] dark:text-[#14B8A6] font-semibold text-[11px] bg-[#0B9FA5]/10 dark:bg-[#14B8A6]/10 px-2 py-0.5 rounded-md">
+                      STATUS: ACTIVE
+                    </span>
                   </div>
 
-                  <div className="space-y-2 text-zinc-400 text-[11px] sm:text-xs">
+                  <div className="space-y-2.5 text-[#5C6470] dark:text-[#94A3B8] text-xs">
                     <div className="flex justify-between">
                       <span>Active Stage:</span>
-                      <span className="text-zinc-200">{activeStep.label}</span>
+                      <span className="font-semibold text-[#1C1E21] dark:text-[#F8FAFC]">{activeStep.label}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Primary Tool:</span>
-                      <span className="text-emerald-400">{activeStep.tool}</span>
+                      <span>Primary Tooling:</span>
+                      <span className="font-semibold text-[#02365D] dark:text-[#38BDF8]">{activeStep.tool}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Execution Mode:</span>
-                      <span className="text-zinc-200">Automated Webhook</span>
+                      <span>Delivery Strategy:</span>
+                      <span className="text-[#1C1E21] dark:text-[#F8FAFC]">Automated Webhook CI</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Reproducibility:</span>
-                      <span className="text-zinc-200">100% Declarative</span>
+                      <span className="text-[#1C1E21] dark:text-[#F8FAFC]">Declarative Code & Containers</span>
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px]">
-                    <span className="text-zinc-400">Next Stage:</span>
-                    <span className="text-zinc-200 flex items-center gap-1">
-                      {activeStep.stepNumber === "07" ? "Feedback & Monitoring" : "Subsequent Pipeline Node"}
-                      <ArrowRight className="w-3 h-3 text-emerald-400" />
+                  <div className="pt-3 border-t border-[#EAE6DF] dark:border-[#1E283D] flex items-center justify-between text-[11px]">
+                    <span className="text-[#5C6470] dark:text-[#94A3B8]">Next Pipeline Node:</span>
+                    <span className="text-[#02365D] dark:text-[#38BDF8] font-bold flex items-center gap-1">
+                      {activeStep.stepNumber === "07" ? "Monitoring & Feedback" : "Subsequent Automated Step"}
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </div>

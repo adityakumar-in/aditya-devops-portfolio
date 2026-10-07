@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { projects, projectCategories, ProjectCategory } from "@/data/projects";
 import { ProjectCard } from "./project-card";
-import { Layers, FolderGit2 } from "lucide-react";
+import { FolderGit2 } from "lucide-react";
 import { MotionReveal } from "./motion-wrapper";
 
 export function Projects() {
@@ -15,34 +15,34 @@ export function Projects() {
       : projects.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-20 md:py-28 relative border-t border-white/[0.06]">
+    <section id="projects" className="py-12 md:py-16 relative bg-[var(--bg-canvas)] border-t border-[var(--border-warm)] transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <MotionReveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-emerald-400 mb-3">
-                <span>// 05. PROJECTS</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#101624] border border-[#EAE6DF] dark:border-[#1E283D] text-xs font-bold uppercase tracking-widest text-[#0B9FA5] dark:text-[#14B8A6] mb-3 shadow-xs">
+                <span>// 05. Production Deployments</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
-                Featured Infrastructure Projects
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#02365D] dark:text-[#38BDF8]">
+                Featured DevOps Deployments
               </h2>
-              <p className="mt-3 text-zinc-400 text-sm sm:text-base max-w-2xl leading-relaxed">
-                Real-world systems, containerized deployments, and automated pipelines engineered with DevOps best practices.
+              <p className="mt-3 text-[#5C6470] dark:text-[#94A3B8] text-sm sm:text-base max-w-2xl leading-relaxed">
+                Production-grade multi-tier web applications, automated CI/CD pipelines, and cloud environments engineered using DevOps best practices.
               </p>
             </div>
 
             {/* Category Filter Pills */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+            <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-white dark:bg-[#101624] border border-[#EAE6DF] dark:border-[#1E283D] shadow-xs">
               {projectCategories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02365D] dark:focus-visible:ring-[#38BDF8] ${
                     selectedCategory === cat
-                      ? "bg-emerald-400 text-zinc-950 font-semibold"
-                      : "text-zinc-400 hover:text-white"
+                      ? "bg-[#02365D] text-white dark:bg-[#38BDF8] dark:text-[#090D16] shadow-xs"
+                      : "text-[#5C6470] dark:text-[#94A3B8] hover:text-[#1C1E21] dark:hover:text-[#F8FAFC]"
                   }`}
                 >
                   {cat}
@@ -52,21 +52,25 @@ export function Projects() {
           </div>
         </MotionReveal>
 
-        {/* Projects Grid */}
+        {/* Projects Render Container (Data-Driven & Scalable) */}
         <MotionReveal delay={0.15}>
           {filteredProjects.length > 0 ? (
-            <div className="grid grid-cols-1 gap-8">
-              {filteredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+            <div className="space-y-10">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  projectIndex={index + 1}
+                />
               ))}
             </div>
           ) : (
-            <div className="p-12 text-center rounded-2xl bg-[#0b101b] border border-white/[0.08] text-zinc-400">
-              <FolderGit2 className="w-8 h-8 text-zinc-500 mx-auto mb-3" />
+            <div className="p-12 text-center rounded-2xl bg-white dark:bg-[#101624] border border-[#EAE6DF] dark:border-[#1E283D] text-[#5C6470] dark:text-[#94A3B8]">
+              <FolderGit2 className="w-8 h-8 text-[#8C94A0] dark:text-[#64748B] mx-auto mb-3" />
               <p className="text-sm font-mono">No projects found in this category.</p>
               <button
                 onClick={() => setSelectedCategory("All")}
-                className="mt-3 text-xs font-mono text-emerald-400 hover:underline"
+                className="mt-3 text-xs font-mono font-semibold text-[#02365D] dark:text-[#38BDF8] hover:underline cursor-pointer"
               >
                 Reset filter
               </button>

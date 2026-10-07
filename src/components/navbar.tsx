@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Terminal, Menu, X, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
 
 const navLinks = [
   { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
   { name: "Skills", href: "#skills" },
+  { name: "Experience", href: "#experience" },
   { name: "Pipeline", href: "#pipeline" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
@@ -34,107 +35,112 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "py-3 bg-[#07090e]/85 backdrop-blur-md border-b border-white/[0.08] shadow-lg shadow-black/30"
+          ? "py-3 header-glass border-b border-[#EAE6DF] dark:border-[#1E283D] shadow-xs"
           : "py-5 bg-transparent border-b border-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo / Brand */}
+          
+          {/* Logo / Brand Name */}
           <Link
             href="#"
-            className="group flex items-center gap-2.5 text-zinc-100 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg p-1"
-            aria-label="Aditya Kumar - Home"
+            className="group flex items-center gap-2.5 text-[#1C1E21] dark:text-[#F8FAFC] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02365D] dark:focus-visible:ring-[#38BDF8] rounded-lg"
+            aria-label="Aditya Kumar — DevOps Engineer Home"
           >
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500/20 group-hover:border-emerald-500/30 transition-all duration-200">
-              <Terminal className="w-4 h-4" />
+            <div className="w-8 h-8 rounded-lg bg-[#02365D] dark:bg-[#38BDF8] text-white dark:text-[#090D16] flex items-center justify-center font-bold text-xs tracking-wider shadow-xs group-hover:opacity-90 transition-opacity">
+              AK
             </div>
-            <div className="flex flex-col">
-              <span className="font-semibold text-sm tracking-tight text-white flex items-center gap-2">
+            <div className="flex items-baseline gap-2">
+              <span className="font-bold text-sm tracking-tight text-[#1C1E21] dark:text-[#F8FAFC] group-hover:text-[#02365D] dark:group-hover:text-[#38BDF8] transition-colors">
                 Aditya Kumar
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  DevOps
-                </span>
+              </span>
+              <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-[#02365D]/10 dark:bg-[#38BDF8]/10 text-[#02365D] dark:text-[#38BDF8] border border-[#02365D]/15 dark:border-[#38BDF8]/20">
+                DevOps
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation Links */}
           <nav
             aria-label="Main Navigation"
-            className="hidden md:flex items-center gap-1 rounded-full px-4 py-1.5 bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm shadow-inner"
+            className="hidden md:flex items-center gap-0.5 lg:gap-1 rounded-full px-3 py-1 bg-white/80 dark:bg-[#101624]/80 border border-[#EAE6DF] dark:border-[#1E283D] shadow-xs backdrop-blur-md"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3.5 py-1.5 text-xs font-medium text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                className="px-2.5 lg:px-3.5 py-1.5 text-xs font-semibold text-[#5C6470] dark:text-[#94A3B8] hover:text-[#02365D] dark:hover:text-[#38BDF8] transition-colors rounded-full hover:bg-[#FAF8F5] dark:hover:bg-[#161F33] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02365D]"
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Desktop Right CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-2.5 py-1 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          {/* Desktop Right CTA, Availability Indicator & Dark Mode Toggle */}
+          <div className="hidden md:flex items-center gap-2 lg:gap-3">
+            <div className="hidden lg:flex items-center gap-2 text-[11px] font-medium text-[#087D82] dark:text-[#14B8A6] bg-[#0B9FA5]/10 dark:bg-[#14B8A6]/10 border border-[#0B9FA5]/20 dark:border-[#14B8A6]/20 px-2.5 py-1 rounded-full">
+              <span className="w-2 h-2 rounded-full bg-[#0B9FA5] dark:bg-[#14B8A6] pulse-dot" />
               <span>Available</span>
             </div>
+
+            {/* Dark Mode Toggle */}
+            <ThemeToggle />
+
             <a
               href="#contact"
-              className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-950 bg-emerald-400 hover:bg-emerald-300 transition-colors px-3.5 py-1.5 rounded-lg font-mono font-semibold shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#02365D] hover:bg-[#01243E] dark:bg-[#38BDF8] dark:text-[#090D16] dark:hover:bg-[#7DD3FC] transition-all px-3.5 lg:px-4 py-2 rounded-xl shadow-xs hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02365D] cursor-pointer"
             >
-              Let&apos;s Connect
+              <span>Get in Touch</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu & Dark Mode Controls */}
           <div className="flex items-center gap-2 md:hidden">
-            <div className="flex items-center gap-1 text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-2 py-0.5 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Available</span>
-            </div>
+            <ThemeToggle />
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/[0.06] border border-white/[0.08] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="p-2 rounded-xl text-[#1C1E21] dark:text-[#F8FAFC] bg-white dark:bg-[#101624] border border-[#EAE6DF] dark:border-[#1E283D] shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02365D] min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
               aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
+
         </div>
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 p-4 rounded-2xl bg-[#0c101a] border border-white/[0.1] shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="md:hidden mt-3 p-4 rounded-2xl bg-white dark:bg-[#101624] border border-[#EAE6DF] dark:border-[#1E283D] shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
             <nav className="flex flex-col space-y-1">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-3 rounded-lg text-sm font-medium text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-colors flex items-center justify-between min-h-[44px]"
+                  className="px-4 py-3 rounded-xl text-sm font-semibold text-[#1C1E21] dark:text-[#F8FAFC] hover:text-[#02365D] dark:hover:text-[#38BDF8] hover:bg-[#FAF8F5] dark:hover:bg-[#161F33] transition-colors flex items-center justify-between min-h-[44px]"
                 >
                   <span>{link.name}</span>
-                  <span className="text-[10px] font-mono text-zinc-600">→</span>
+                  <span className="text-xs font-mono text-[#8C94A0]">→</span>
                 </a>
               ))}
-              <div className="pt-3 mt-2 border-t border-white/[0.08] flex flex-col gap-2">
+              <div className="pt-3 mt-2 border-t border-[#EAE6DF] dark:border-[#1E283D]">
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 text-sm font-semibold text-zinc-950 bg-emerald-400 hover:bg-emerald-300 transition-colors px-4 py-2.5 rounded-xl min-h-[44px]"
+                  className="flex items-center justify-center gap-2 text-sm font-bold text-white dark:text-[#090D16] bg-[#02365D] dark:bg-[#38BDF8] hover:bg-[#01243E] dark:hover:bg-[#7DD3FC] transition-colors px-4 py-3 rounded-xl min-h-[44px] shadow-xs"
                 >
-                  Let&apos;s Connect
+                  <span>Get in Touch</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
               </div>
             </nav>
           </div>
         )}
+
       </div>
     </header>
   );

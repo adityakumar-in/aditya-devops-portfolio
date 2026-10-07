@@ -1,8 +1,8 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
-import { Experience } from "@/components/experience";
 import { Skills } from "@/components/skills";
+import { Experience } from "@/components/experience";
 import { DevOpsFlow } from "@/components/devops-flow";
 import { Projects } from "@/components/projects";
 import { GithubSection } from "@/components/github-section";
@@ -11,38 +11,38 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#07090e] text-[#f3f4f6] flex flex-col selection:bg-emerald-500/20 selection:text-white">
-      {/* Top Navbar */}
+    <div className="relative min-h-screen bg-[#FAF8F5] dark:bg-[#090D16] text-[#1C1E21] dark:text-[#F8FAFC] flex flex-col transition-colors">
+      {/* Sticky Glass Navbar */}
       <Navbar />
 
-      {/* Main Content Areas */}
+      {/* Main Page Flow */}
       <main className="flex-grow">
-        {/* Hero Section */}
+        {/* 1. Hero Identity & Console */}
         <Hero />
 
-        {/* About Section */}
+        {/* 2. Professional Direction & Education */}
         <About />
 
-        {/* Experience Section */}
-        <Experience />
-
-        {/* Skills Section */}
+        {/* 3. Technical Capabilities & Tooling */}
         <Skills />
 
-        {/* Unique DevOps CI/CD Architecture Flow */}
+        {/* 4. Professional Experience & Impact */}
+        <Experience />
+
+        {/* 5. End-to-End DevOps Pipeline Architecture */}
         <DevOpsFlow />
 
-        {/* Projects Section */}
+        {/* 6. Production Deployments (Data-Driven & Scalable) */}
         <Projects />
 
-        {/* GitHub / Open Source Repositories */}
+        {/* 7. GitHub & Open Source Configurations */}
         <GithubSection />
 
-        {/* Contact Closing Section */}
+        {/* 8. Contact CTA & Availability */}
         <Contact />
       </main>
 
-      {/* Footer */}
+      {/* Minimal Footer */}
       <Footer />
     </div>
   );

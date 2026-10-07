@@ -1,5 +1,8 @@
-import { Cpu, Server, GitMerge, ShieldCheck, CheckCircle2 } from "lucide-react";
+"use client";
+
+import { Cpu, Server, GitMerge, ShieldCheck, CheckCircle2, GraduationCap, MapPin, Calendar } from "lucide-react";
 import { MotionReveal } from "./motion-wrapper";
+import { education } from "@/data/education";
 
 export function About() {
   const pillars = [
@@ -7,51 +10,47 @@ export function About() {
       icon: GitMerge,
       title: "Automated CI/CD Delivery",
       description:
-        "Building automated deployment pipelines with Jenkins and GitHub Actions, cutting manual deployment effort by 60% and ensuring reproducible builds.",
-      color: "text-emerald-400",
-      border: "hover:border-emerald-500/30",
+        "Building automated deployment pipelines with Jenkins and GitHub Actions, cutting manual deployment effort by approximately 60% with reproducible builds.",
+      tag: "Jenkins & Actions",
     },
     {
       icon: Server,
       title: "Containerization & Orchestration",
       description:
-        "Packaging microservices and multi-tier architectures with Docker and Docker Compose for consistent environment parity between local and production.",
-      color: "text-cyan-400",
-      border: "hover:border-cyan-500/30",
+        "Packaging multi-tier web applications with Docker and Docker Compose for consistent development and staging environment parity.",
+      tag: "Docker & Compose",
     },
     {
       icon: ShieldCheck,
       title: "Cloud Infrastructure as Code",
       description:
-        "Provisioning AWS resources (EC2, VPC, IAM, S3) with Terraform, enforcing security policies, isolation, and repeatable declarative configurations.",
-      color: "text-purple-400",
-      border: "hover:border-purple-500/30",
+        "Provisioning AWS cloud resources (EC2, VPC, IAM, S3) with Terraform, enforcing security policies, isolation, and repeatable declarative configurations.",
+      tag: "AWS & Terraform",
     },
     {
       icon: Cpu,
       title: "Linux & Systems Administration",
       description:
-        "Managing Ubuntu/Linux server environments, crafting robust Bash automation scripts, and troubleshooting networking and reverse proxies with Nginx.",
-      color: "text-amber-400",
-      border: "hover:border-amber-500/30",
+        "Managing Ubuntu Linux server environments, crafting robust Bash automation scripts, and routing traffic with Nginx reverse proxy.",
+      tag: "Linux & Bash",
     },
   ];
 
   return (
-    <section id="about" className="py-20 md:py-28 relative border-t border-white/[0.06]">
+    <section id="about" className="py-12 md:py-16 relative bg-[var(--bg-canvas)] border-t border-[var(--border-warm)] transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <MotionReveal>
-          <div className="flex flex-col items-start mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-emerald-400 mb-3">
-              <span>// 01. ABOUT</span>
+          <div className="flex flex-col items-start mb-8 sm:mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#101624] border border-[#EAE6DF] dark:border-[#1E283D] text-xs font-bold uppercase tracking-widest text-[#0B9FA5] dark:text-[#14B8A6] mb-3 shadow-xs">
+              <span>// 01. Professional Direction</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
-              Engineering reliable systems from code to cloud
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#02365D] dark:text-[#38BDF8]">
+              Engineering Reliable Systems From Code to Cloud
             </h2>
-            <p className="mt-3 text-zinc-400 text-sm sm:text-base max-w-2xl leading-relaxed">
-              I specialize in bridging software development and production infrastructure through automation, containerization, and clean architectural practices.
+            <p className="mt-3 text-[#5C6470] dark:text-[#94A3B8] text-sm sm:text-base max-w-2xl leading-relaxed">
+              Bridging application development and production infrastructure through automation, containerization, and clean architectural practices.
             </p>
           </div>
         </MotionReveal>
@@ -59,32 +58,72 @@ export function About() {
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Narrative Column */}
-          <div className="lg:col-span-5">
+          {/* Narrative & Academic Foundation Column */}
+          <div className="lg:col-span-5 space-y-6">
             <MotionReveal delay={0.1}>
-              <div className="space-y-5 text-zinc-300 text-sm sm:text-base leading-relaxed">
-                <div className="p-6 rounded-2xl bg-[#0b101b] border border-white/[0.08] relative">
-                  <p className="text-zinc-300">
-                    As a <strong className="text-white font-semibold">DevOps Engineer</strong>, I believe software is only as good as the system that delivers and runs it. My work focuses on removing friction between development teams and production environments.
-                  </p>
-                  <p className="mt-4 text-zinc-300">
-                    During my hands-on experience at CS Soft Solutions, I engineered automated CI/CD pipelines with Jenkins and GitHub Actions, containerized full-stack services using Docker, and configured secure AWS cloud environments with EC2, IAM, S3, and custom VPC networking.
-                  </p>
-                  <p className="mt-4 text-zinc-400 text-xs sm:text-sm font-mono border-t border-white/[0.08] pt-4">
-                    Core Focus: Infrastructure as Code (Terraform) • Containerization (Docker) • CI/CD Automation (Jenkins) • Cloud (AWS) • Linux Administration
-                  </p>
+              <div className="card-premium p-6 sm:p-7 space-y-4">
+                <h3 className="text-lg font-bold text-[#1C1E21] dark:text-[#F8FAFC] tracking-tight">
+                  DevOps & Cloud Specialization
+                </h3>
+                <p className="text-sm text-[#5C6470] dark:text-[#94A3B8] leading-relaxed">
+                  As a <strong className="text-[#1C1E21] dark:text-[#F8FAFC] font-semibold">DevOps Engineer</strong>, I focus on eliminating deployment friction and building automated, repeatable infrastructure.
+                </p>
+                <p className="text-sm text-[#5C6470] dark:text-[#94A3B8] leading-relaxed">
+                  Through hands-on work in a structured professional IT environment at <strong className="text-[#02365D] dark:text-[#38BDF8]">CS Soft Solutions (Mohali, India)</strong>, I engineered automated CI/CD pipelines using Jenkins, GitHub Actions, Docker, and Linux, reducing manual deployment effort by approximately 60%.
+                </p>
+                <p className="text-sm text-[#5C6470] dark:text-[#94A3B8] leading-relaxed">
+                  My technical focus centers on provisioning AWS resources with Terraform, containerizing multi-tier applications, writing robust Bash scripts, and configuring Nginx reverse proxies for dependable traffic routing.
+                </p>
+                <div className="pt-3 border-t border-[#EAE6DF] dark:border-[#1E283D] flex items-center justify-between text-xs font-mono text-[#5C6470] dark:text-[#94A3B8]">
+                  <span>Work Location:</span>
+                  <span className="font-semibold text-[#02365D] dark:text-[#38BDF8] flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-[#E77922] dark:text-[#F59E0B]" />
+                    Mohali, India
+                  </span>
+                </div>
+              </div>
+            </MotionReveal>
+
+            {/* Academic Foundation Card (MCA + BCA) */}
+            <MotionReveal delay={0.15}>
+              <div className="card-premium p-6 sm:p-7 space-y-4">
+                <div className="flex items-center justify-between pb-2 border-b border-[#EAE6DF] dark:border-[#1E283D]">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#02365D] dark:text-[#38BDF8]">
+                    <GraduationCap className="w-4 h-4 text-[#0B9FA5] dark:text-[#14B8A6]" />
+                    <span>Academic Foundation</span>
+                  </div>
+                  <span className="text-[11px] font-mono font-semibold text-[#5C6470] dark:text-[#94A3B8]">
+                    Higher Education
+                  </span>
                 </div>
 
-                {/* Quick Stats or Highlights */}
-                <div className="grid grid-cols-2 gap-3 font-mono">
-                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <div className="text-2xl font-bold text-emerald-400">~60%</div>
-                    <div className="text-xs text-zinc-400 mt-1">Manual Deployment Effort Reduced</div>
-                  </div>
-                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <div className="text-2xl font-bold text-cyan-400">6 Mo</div>
-                    <div className="text-xs text-zinc-400 mt-1">Production Hands-on Experience</div>
-                  </div>
+                <div className="space-y-4 pt-1">
+                  {education.map((edu, idx) => (
+                    <div
+                      key={edu.id}
+                      className={idx > 0 ? "pt-3.5 border-t border-[#EAE6DF]/60 dark:border-[#1E283D]/60" : ""}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <h4 className="text-sm sm:text-base font-bold text-[#1C1E21] dark:text-[#F8FAFC] leading-snug">
+                            {edu.degree}
+                          </h4>
+                          <p className="text-xs sm:text-sm font-semibold text-[#02365D] dark:text-[#38BDF8] mt-0.5">
+                            {edu.institution}, {edu.location}
+                          </p>
+                        </div>
+                        {edu.statusBadge && (
+                          <span className="shrink-0 text-[10px] font-mono font-bold text-[#0B9FA5] dark:text-[#14B8A6] bg-[#0B9FA5]/10 dark:bg-[#14B8A6]/10 px-2 py-0.5 rounded-full border border-[#0B9FA5]/20 dark:border-[#14B8A6]/20">
+                            {edu.statusBadge}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1.5 text-xs font-mono text-[#5C6470] dark:text-[#94A3B8] mt-1.5">
+                        <Calendar className="w-3 h-3 text-[#E77922] dark:text-[#F59E0B]" />
+                        <span>{edu.period}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </MotionReveal>
@@ -92,29 +131,35 @@ export function About() {
 
           {/* Pillars Cards Column */}
           <div className="lg:col-span-7">
-            <MotionReveal delay={0.2}>
+            <MotionReveal delay={0.15}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {pillars.map((pillar) => {
                   const Icon = pillar.icon;
                   return (
                     <div
                       key={pillar.title}
-                      className={`p-5 rounded-2xl bg-[#0b101b] border border-white/[0.08] ${pillar.border} transition-all duration-300 flex flex-col justify-between group`}
+                      className="card-premium p-5 sm:p-6 flex flex-col justify-between group"
                     >
                       <div>
-                        <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-                          <Icon className={`w-5 h-5 ${pillar.color}`} />
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] dark:bg-[#161F33] border border-[#EAE6DF] dark:border-[#1E283D] flex items-center justify-center text-[#02365D] dark:text-[#38BDF8] group-hover:bg-[#02365D] group-hover:text-white dark:group-hover:bg-[#38BDF8] dark:group-hover:text-[#090D16] transition-colors">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <span className="text-[10px] font-mono font-semibold text-[#5C6470] dark:text-[#94A3B8] bg-[#FAF8F5] dark:bg-[#161F33] px-2 py-0.5 rounded border border-[#EAE6DF] dark:border-[#1E283D]">
+                            {pillar.tag}
+                          </span>
                         </div>
-                        <h3 className="text-base font-semibold text-white mb-2 tracking-tight">
+                        <h3 className="text-base font-bold text-[#1C1E21] dark:text-[#F8FAFC] mb-2 tracking-tight">
                           {pillar.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#5C6470] dark:text-[#94A3B8] leading-relaxed">
                           {pillar.description}
                         </p>
                       </div>
-                      <div className="mt-4 pt-3 border-t border-white/[0.04] flex items-center gap-1.5 text-[11px] font-mono text-zinc-500">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500/70" />
-                        <span>Production Verified</span>
+
+                      <div className="mt-4 pt-3 border-t border-[#EAE6DF] dark:border-[#1E283D] flex items-center gap-1.5 text-[11px] font-mono text-[#087D82] dark:text-[#14B8A6]">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>Hands-on Experience</span>
                       </div>
                     </div>
                   );
